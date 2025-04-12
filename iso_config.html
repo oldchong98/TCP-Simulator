@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO Message Config</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>ISO Message Config</h1>
+    <div>
+        <label for="isoSelect">Select ISO Config:</label>
+        <select id="isoSelect">
+            <option value="">-- Select Config --</option>
+            <option value="HPDH">HPDH</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+    
+    <table id="configTable">
+        <thead>
+            <tr>
+                <th>BMP Position</th>
+                <th>Length Type</th>
+                <th>Data Type</th>
+                <th>Justification/Padding</th>
+                <th>Filler</th>
+                <th>Field Name</th>
+                <th>Default Field Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated here -->
+        </tbody>
+    </table>
+    
+    <div>
+        <label for="bmpPositionInput">BMP Position:</label>
+        <input type="text" id="bmpPositionInput">
+    </div>
+    <div>
+        <label for="lengthTypeInput">Length Type:</label>
+        <input type="text" id="lengthTypeInput">
+    </div>
+    <div>
+        <label for="dataTypeInput">Data Type:</label>
+        <input type="text" id="dataTypeInput">
+    </div>
+    <div>
+        <label for="justificationInput">Justification:</label>
+        <input type="text" id="justificationInput">
+    </div>
+    <div>
+        <label for="fillerInput">Filler:</label>
+        <input type="text" id="fillerInput">
+    </div>
+    <div>
+        <label for="fieldNameInput">Field Name:</label>
+        <input type="text" id="fieldNameInput">
+    </div>
+    <div>
+        <label for="defaultValueInput">Default Value:</label>
+        <input type="text" id="defaultValueInput">
+    </div>
+    <button id="addFieldBtn">Add Field</button>
+    
+    <div id="tcpStatus">TCP Status: Down</div>
+    <script src="renderer.js"></script>
+</body>
+</html> 

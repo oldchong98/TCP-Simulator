@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Run</h1>
+    <div id="tcpStatus">TCP Status: Down</div>
+    
+    <div>
+        <label for="asciiInput">ASCII Input:</label>
+        <input type="text" id="asciiInput" placeholder="Enter ASCII text">
+    </div>
+    <div>
+        <label for="hexOutput">HEX Output:</label>
+        <input type="text" id="hexOutput" placeholder="HEX will appear here" readonly>
+    </div>
+    <button id="sendHexBtn">Send HEX</button>
+    <button id="clearLogBtn">Clear Log</button>
+    
+    <div id="dataDisplay">
+        <!-- Display sent and received data here -->
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html> 

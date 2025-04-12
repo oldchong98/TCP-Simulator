@@ -1,0 +1,33 @@
+{
+  "name": "tcp-simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^35.0.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.oldchong.tcp.simulator",
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
+  },
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}

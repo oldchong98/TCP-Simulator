@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Setup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>TCP Connection</h1>
+    <div>
+        <label for="mode">Select Mode:</label>
+        <select id="mode">
+            <option value="server">Server</option>
+            <option value="client">Client</option>
+        </select>
+    </div>
+    <div>
+        <label for="currentIp">Current TCP IP:</label>
+        <input type="text" id="currentIp" placeholder="Enter current IP">
+    </div>
+    <div>
+        <label for="currentPort">Current TCP Port:</label>
+        <input type="number" id="currentPort" placeholder="Enter current port">
+    </div>
+    <div>
+        <label for="targetIp">Target TCP IP:</label>
+        <input type="text" id="targetIp" placeholder="Enter target IP">
+    </div>
+    <div>
+        <label for="targetPort">Target TCP Port:</label>
+        <input type="number" id="targetPort" placeholder="Enter target port">
+    </div>
+    <button id="connectBtn">Start</button>
+    <button id="disconnectBtn">Stop</button>
+    
+    <div id="tcpStatus">TCP Status: Down</div>
+
+    <script src="renderer.js"></script>
+</body>
+</html> 

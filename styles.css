@@ -1,0 +1,96 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #33b6b4; /* Navigation bar color */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: #33b6b4; /* Title color */
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select, button {
+    width: 200px; /* Set a fixed width for inputs and buttons */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #33b6b4; /* Input border color */
+    border-radius: 5px;
+    background-color: #2e2e2e; /* Darker background for inputs */
+    color: #ffffff;
+}
+
+button {
+    cursor: pointer;
+    background-color: #33b6b4; /* Button color */
+    border: none;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #28a19a; /* Darker shade on hover */
+}
+
+#tcpStatus {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#status {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Set the width of the input fields to match the data display area */
+#asciiInput, #hexOutput {
+    width: 100%; /* Make input fields take full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Break long words to wrap */
+}
+
+/* Ensure the data display area has a defined width */
+#dataDisplay {
+    margin-top: 20px; /* Make data display take full width */
+    height: 150px; /* Set a fixed height */
+    border: 1px solid #ccc; /* Add a border */
+    padding: 10px; /* Add padding */
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    overflow-wrap: break-word; /* Break long words to wrap */
+    white-space: normal; /* Allow text to wrap */
+    background-color: #2e2e2e; /* Darker background for better contrast */
+}
