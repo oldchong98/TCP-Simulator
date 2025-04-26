@@ -4,6 +4,7 @@ const { ipcRenderer } = require('electron');
 let server;
 let client;
 let clientsOfServer = new Set();
+let isDumbIcashResponseEnabled = false;
 
 // Object to store TCP connection information
 const tcpConnectionInfo = {
@@ -187,8 +188,36 @@ function startServer(ip, port) {
         clientsOfServer.add(socket); // Add socket to Clients
 
         socket.on('data', (data) => {
-            console.log('Received:', data.toString());
-            displayData(data.toString(), asciiToHex(data.toString()), 'received'); // Display received data
+            const receivedAscii = data.toString(); // Convert received data to ASCII
+            const receivedHex = data.toString('hex'); // Convert received data to HEX
+            console.log('Received (Server):', receivedAscii);
+            displayData(receivedAscii, receivedHex, 'received'); // Display received data
+
+            // Check if Dumb ICash Response is enabled
+            if (isDumbIcashResponseEnabled) {
+                console.log('Dumb ICash Response: Modifying and sending back received data');
+                
+                // Modify the data: replace the 28th character (index 27) with '2'
+                let responseAscii = receivedAscii;
+                if (responseAscii.length >= 28) {
+                    // Convert string to array, modify, then join back
+                    let responseArray = responseAscii.split('');
+                    responseArray[27] = '2'; // Index 27 is the 28th character
+                    responseAscii = responseArray.join('');
+                } else {
+                    console.warn('Received data is too short to modify the 28th character.');
+                }
+
+                // Convert modified ASCII back to Buffer and HEX
+                const responseBuffer = Buffer.from(responseAscii);
+                const responseHex = responseBuffer.toString('hex');
+
+                // Send the modified data back
+                if (!socket.destroyed) {
+                    socket.write(responseBuffer); // Send the modified Buffer back
+                    displayData(responseAscii, responseHex, 'sent'); // Display modified sent data
+                }
+            }
         });
         socket.on('end', () => {
             console.log('Client disconnected');
@@ -221,9 +250,36 @@ function startClient(targetIp, targetPort) {
     });
 
     client.on('data', (data) => {
-        const hexData = data.toString('hex'); // Convert received data to HEX
-        const asciiData = data.toString(); // Convert received data to ASCII
-        displayData(asciiData, hexData, 'received'); // Display received data in both ASCII and HEX format
+        const receivedAscii = data.toString(); // Convert received data to ASCII
+        const receivedHex = data.toString('hex'); // Convert received data to HEX
+        console.log('Received (Client):', receivedAscii);
+        displayData(receivedAscii, receivedHex, 'received'); // Display received data
+
+        // Check if Dumb ICash Response is enabled
+        if (isDumbIcashResponseEnabled) {
+            console.log('Dumb ICash Response: Modifying and sending back received data');
+            
+            // Modify the data: replace the 28th character (index 27) with '2'
+            let responseAscii = receivedAscii;
+            if (responseAscii.length >= 28) {
+                // Convert string to array, modify, then join back
+                let responseArray = responseAscii.split('');
+                responseArray[27] = '2'; // Index 27 is the 28th character
+                responseAscii = responseArray.join('');
+            } else {
+                console.warn('Received data is too short to modify the 28th character.');
+            }
+
+            // Convert modified ASCII back to Buffer and HEX
+            const responseBuffer = Buffer.from(responseAscii);
+            const responseHex = responseBuffer.toString('hex');
+
+            // Send the modified data back
+            if (!client.destroyed) {
+                client.write(responseBuffer); // Send the modified Buffer back
+                displayData(responseAscii, responseHex, 'sent'); // Display modified sent data
+            }
+        }
     });
 
     client.on('close', () => {
@@ -338,6 +394,17 @@ function setupRunPageListeners() {
         document.getElementById('dataDisplay').innerHTML = ''; // Clear the data display area
         localStorage.removeItem('displayedData'); // Optionally clear the stored displayed data
     });
+
+    // Event listener for the new checkbox
+    const dumbCheckbox = document.getElementById('dumbIcashResponseCheckbox');
+    if (dumbCheckbox) {
+        dumbCheckbox.addEventListener('change', function() {
+            isDumbIcashResponseEnabled = this.checked;
+            console.log('Dumb ICash Response enabled:', isDumbIcashResponseEnabled);
+        });
+        // Initialize checkbox state (optional, could load from storage if needed)
+        isDumbIcashResponseEnabled = dumbCheckbox.checked;
+    }
 }
 
 // Function to load ISO configurations

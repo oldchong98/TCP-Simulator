@@ -94,3 +94,25 @@ button:hover {
     white-space: normal; /* Allow text to wrap */
     background-color: #2e2e2e; /* Darker background for better contrast */
 }
+
+/* Styles for the Dumb ICash Response checkbox container */
+#dumbResponseContainer {
+    margin-top: 15px; /* Add some space above the checkbox */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center items */
+}
+
+/* Styles for the checkbox itself */
+#dumbIcashResponseCheckbox {
+    width: auto; /* Override the default width for checkboxes */
+    margin: 0 10px 0 0; /* Adjust margin: top right bottom left */
+    cursor: pointer;
+}
+
+/* Styles for the checkbox label */
+#dumbResponseContainer label {
+    margin: 0; /* Reset default label margin */
+    cursor: pointer;
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #cccccc; /* Lighter gray color */
+}
