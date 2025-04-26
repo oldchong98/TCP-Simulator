@@ -1,0 +1,4 @@
+npm install
+npm start
+npx electron-builder --win --x64 
+npx electron-builder --mac
